@@ -1,0 +1,64 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowS3ConsoleAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ListSpecificBuckets",
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": [
+                "arn:aws:s3:::aliu-cloudlaunch-site-bucket",
+                "arn:aws:s3:::aliu-cloudlaunch-private-bucket",
+                "arn:aws:s3:::aliu-cloudlaunch-visible-only-bucket"
+            ]
+        },
+        {
+            "Sid": "ReadOnlyAccessToSiteBucket",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": [
+                "arn:aws:s3:::aliu-cloudlaunch-site-bucket/*"
+            ]
+        },
+        {
+            "Sid": "ReadWriteAccessToPrivateBucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aliu-cloudlaunch-private-bucket/*"
+            ]
+        },
+        {
+            "Sid": "VPCReadOnlyAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeRegions",
+                "ec2:DescribeDhcpOptions",
+                "ec2:DescribeNetworkAcls",
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeInstances",
+                "ec2:DescribeImages",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeTags"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
